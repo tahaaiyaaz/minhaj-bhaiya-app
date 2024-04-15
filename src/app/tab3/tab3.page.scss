@@ -1,0 +1,61 @@
+#sellButton
+{
+    display: none;
+    --background:#bec5ad;
+    color:black;
+    font-weight: 600;
+}
+
+ion-searchbar{
+    --background:rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
+
+
+}
+
+ion-content{
+    --background:#e9ecef;
+}
+.add_button{
+    --background:#81b29a
+}
+.delete_button{
+    --background:#f94144;
+}
+
+// // .available_items{
+// //     margin: 20px;;
+// // }    
+.available_items_ki_ion_list{
+background-color: #e9ecef;
+
+}
+.available_items_ki_ion_item{
+    margin: 20px;
+
+}
+
+
+.lebel_for_adding{
+    display: flex;
+    justify-content: space-between;
+}
+.icon_for_adding{
+    width: 30px;
+    height: 25px;
+    color: cadetblue;
+}
+.items_in_the_cart_wala_div{
+    margin:20px;
+}
+
+.sellItems{
+    margin: 17px 0px;
+    border-radius: 9px;
+}
+.inputs_for_price_and_quantity{
+    width: 100px;
+}
+.common_color{
+    --background:none;
+
+}

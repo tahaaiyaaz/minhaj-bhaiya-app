@@ -1,0 +1,17 @@
+<div>
+  <ion-item class="overAllContent">
+    <ion-label position="floating" >name </ion-label>
+    <ion-input #box_name_change value={{passedId.soledItems[index].name}}></ion-input>
+  </ion-item>
+  <ion-item  class="overAllContent">
+    <ion-label position="floating">price</ion-label>
+    <ion-input #box_price_change value={{passedId.soledItems[index].sellingPrice}}></ion-input>
+  </ion-item>
+  <ion-item  class="overAllContent">
+    <ion-label position="floating">quantity</ion-label>
+    <ion-input #box_quantity_change value={{passedId.soledItems[index].sellingQuantity}}></ion-input>
+  </ion-item>
+
+<ion-button (click)="changeSoledItems(box_name_change.value,box_price_change.value,box_quantity_change.value)">apply</ion-button>
+</div>
+ 

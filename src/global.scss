@@ -24,3 +24,14 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+ion-modal ion-content {
+    --offset-top:unset !important;
+    --offset-bottom:unset !important;
+    overflow: auto !important;
+}
+
+.popover-side-bottom{
+    --width: max-content;
+}

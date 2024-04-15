@@ -1,0 +1,28 @@
+// #solditems{
+// display: block;
+// }
+
+// #newStock{
+//     display: block;
+
+// }
+
+ion-content{
+    --background:#e9ecef;
+
+}
+.calender
+{
+    width: 100%;
+    max-width: none !important;
+    ion-datetime{
+        width: 100%;
+        max-width: none !important;
+
+    }
+    
+}
+.dateTimeKiId{
+    max-width: none !important;
+
+}

@@ -1,17 +1,241 @@
-<ion-header [translucent]="true">
+<!-- 
+<div>
+  <ion-content fullscreen="true">
+  <ion-item>
+  <ion-label (keypress)="OnKeyUp()" position="floating">name </ion-label>
+  <ion-input #box_id></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">price</ion-label>
+  <ion-input #box_price></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">quantity</ion-label>
+  <ion-input #box_quantity></ion-input>
+</ion-item>
+<ion-button (click)="fetch()">edit</ion-button>
+
+
+
+<ion-button  (click)="initialize(box_id.value,box_price.value,box_quantity.value)">create</ion-button> 
+
+<div id="cards">
+  <ion-card  *ngFor="let arrs of shared.users;let i = index" >
+    <ion-card-content >
+      {{arrs.name}}
+      {{arrs.price}}
+      {{arrs.quantity}}
+      <ion-button   (click)="editcard(i)">edit</ion-button>
+      
+
+      <ion-button (click)="delete(i)" >delete</ion-button>
+
+      
+    </ion-card-content>
+    
+    
+  </ion-card>
+  <h1>edit soled items</h1>
+  <ion-card  *ngFor="let arrs of shared.soledItems;let i = index" >
+    <ion-card-content >
+      {{arrs.name}}
+      {{arrs.sellingQuantity}}
+      {{arrs.sellingPrice}}
+      <ion-button   (click)="editSoledCard(arrs,i)">edit</ion-button>
+      
+
+      <ion-button (click)="deleteSoledItems(i)" >delete</ion-button>
+
+      
+    </ion-card-content>
+    
+    
+     </ion-card>
+     <ion-button (click)="complete()">ok</ion-button>
+
+</div>
+    
+  </ion-content>
+  
+</div>
+ -->
+
+
+
+
+
+
+
+ <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+    <ion-title>adding stock</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refresh()">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-segment color="dark" (ionChange)="segmentChange($event)" value=1>
+    <ion-segment-button value="1">
+      <ion-label>newstock</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      <ion-label>oldmall</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <!-- <ion-segment (ionChange)="segmentChange($event)" value="newstock">
+    <ion-segment-button value="newstock">
+      <ion-label>newstock</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="oldmall">
+      <ion-label>oldmall</ion-label>
+    </ion-segment-button>
+  </ion-segment> -->
+
+  <div id="newstock">
+<form (ngSubmit)="initialize(box_name.value,box_price.value,box_quantity.value)">
+
+
+  <div class="newstockkiClass">
+    <ion-item>
+      <!-- <ion-label position="floating">name </ion-label> -->
+      <ion-input required="true" label="name" labelPlacement="floating" placeholder="enter name" #box_name></ion-input>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-label position="floating" >price</ion-label> -->
+      <ion-input required="true" label="price" labelPlacement="floating" placeholder="enter price" #box_price inputmode="numeric" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-label position="floating" >quantity</ion-label> -->
+      <ion-input required="true" label="quantity" labelPlacement="floating" placeholder="enter quantity" #box_quantity inputmode="numeric" type="number"></ion-input>
+    </ion-item>
+
+
+
+
+    <ion-button class="create_button" type="submit">create</ion-button>
+  </div>
+</form>
+
+
+
+  </div>
+
+  <div id="oldstock">
+
+<div class="oldstockkiClass">
+  <form (ngSubmit)="addToOldItems(olditem_price.value,olditem_quantity.value)">
+
+<ion-item>
+
+
+
+  <ion-list>
+    <ion-item>
+      <ion-select aria-label="Fruit" interface="action-sheet" placeholder="select" aria-required="true"
+        (ionChange)="selectOlditem($event)">
+
+        <ion-select-option *ngFor="let ss of oldItems" [value]=ss.name>{{ss.name}}</ion-select-option>
+
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <!-- <ion-label position="floating">price</ion-label> -->
+      <ion-input required="true" label="price" labelPlacement="floating" placeholder="enter price" #olditem_price inputmode="numeric" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-label position="floating">quantity</ion-label> -->
+      <ion-input required="true" label="quantity" labelPlacement="floating" placeholder="enter quantity" #olditem_quantity inputmode="numeric" type="number"></ion-input>
+    </ion-item>
+
+  </ion-list>
+</ion-item>
+ 
+  <ion-button  class="create_button" 
+  type="submit"
+  
+  >add</ion-button>
+</form>
+
+  <ion-button class="create_button"  (click)="fetch()">edit</ion-button>
+
+
+  
+<div id="cards">
+<ion-card class="ion_card_for_order_edit " *ngFor="let arrs of shared.users;let i = index" >
+
+  <div>
+    <ion-icon class="button-image edit_icon" (click)="editcard(i)" name="create-outline"></ion-icon>
+
+  </div>
+
+  <ion-card-content >
+    {{arrs.name}}
+
+    {{arrs.quantity}}
+
+    <!-- <ion-button   (click)="editcard(i)">edit</ion-button> -->
+    
+
+
+    
+  </ion-card-content>
+  <div>
+    <ion-icon class="button-image delete_icon" (click)="delete(i)" name="trash-outline"></ion-icon>
+
+  </div>
+  <!-- <ion-button (click)="delete(i)" >delete</ion-button> -->
+
+  
+  
+</ion-card>
+  
+<h1>edit soled items</h1>
+
+
+<ion-card class="ion_card_for_order_edit" *ngFor="let arrs of shared.soledItems;let i = index" >
+
+
+  <div>
+    <ion-icon class="button-image edit_icon" (click)="editSoledCard(arrs,i)" name="create-outline"></ion-icon>
+
+  </div>
+
+  <ion-card-content >
+    {{arrs.name}}
+    {{arrs.sellingQuantity}}
+    {{arrs.sellingPrice}}
+    <!-- <ion-button   (click)="editSoledCard(arrs,i)">edit</ion-button>
+    
+
+    <ion-button (click)="deleteSoledItems(i)" >delete</ion-button> -->
+
+    
+  </ion-card-content>
+  <div>
+    <ion-icon class="button-image delete_icon" (click)="deleteSoledItems(i)" name="trash-outline"></ion-icon>
+
+  </div>
+  
+  
+   </ion-card>
+   <ion-button class="complete_button" (click)="complete()">ok</ion-button>
+
+</div>
+
+</div>
+  </div>
+
 </ion-content>
+
+
+
+

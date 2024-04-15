@@ -1,0 +1,89 @@
+.price_and_quantity{
+    display: flex;
+    flex-direction: column;
+}
+ion-header{
+  display: flex;
+ion-toolbar{
+  --background:#ffffff;
+
+}
+}
+.heading{
+  text-align: -webkit-center;
+
+  font-size: 30px;
+  align-items: center;
+  display: inline-flex;
+    justify-content: center;
+    width: 80%;
+    height: max-content;
+}
+ ion-content {
+  width: 300px;
+    --offset-top:unset !important;
+    --offset-bottom:unset !important;
+    overflow: scroll !important;
+    .ion_content{
+
+      --background:#f5ebe0;
+      background-color: #f5ebe0;
+      ion-item{
+        background-color: #f5ebe0;
+        --background:#dcdcdd;
+
+
+      }
+    }
+    
+}
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 300px;
+    
+    background: #ccc;
+  }
+  
+  input, #scroll {
+    margin: 10px;
+  }
+  
+  #scroll {
+    display: flex;
+    
+    flex-grow: 1;
+    flex-direction: column;
+    
+    background: #ddd;
+    
+    overflow-y: auto;
+  }
+
+  .back_icon{
+    width: 10%;
+    height: 30px;
+  }
+  
+  .cancel_button{
+    display: none;
+    text-align: end;
+    
+    ion-button{
+      --background: rgb(255, 89, 89);
+    }
+  }
+
+  .edit_button{
+    width: 10%;
+    height: 30px;
+  }
+
+  .changeButton{
+    width: 100%;
+    ion-button{
+      width: 100%;
+      --background: #81b29a;
+    }
+  }

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "minhaj-bhaiya-app": {
+      "hosting": {
+        "app": [
+          "minhaj-bhaiya-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "minhaj-bhaiya-app"
+  }
+}

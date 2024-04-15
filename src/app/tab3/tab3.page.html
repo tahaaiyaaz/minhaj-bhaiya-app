@@ -1,17 +1,65 @@
+
+
+
+
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+    <ion-title>selling stock</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content fullscreen="true">
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content>
+
+    </ion-refresher-content>
+  </ion-refresher>
+  
+
+    <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
+    <ion-list class=" available_items_ki_ion_list">
+      <ion-item class="available_items_ki_ion_item  common_color" *ngFor="let result of results;let j = index">
+        <ion-label class="lebel_for_adding">{{ result.name }} 
+          <ion-icon class="icon_for_adding" (click)="addIndexOfOrders(result)" name="bag-add-outline"></ion-icon>
+          <!-- <ion-icon name="add-outline"></ion-icon> -->
+          <!-- <ion-button class="add_button" (click)="addIndexOfOrders(j)">add</ion-button> -->
+          </ion-label> 
+      </ion-item>
+    </ion-list>
+
+  <div class="available_items items_in_the_cart_wala_div">
+    <p>
+      items in the cart
+    </p>
+    <!-- <form #f="ngForm" (ngSubmit)="onSubmit(f)"> -->
+      <form #f="ngForm">
+
+      <ion-item  class="sellItems common_color" *ngFor="let result of items;let j = index">
+
+      <ion-label class="sellingLabel">{{result.name }}  <br>available {{result.quantity }} <br> </ion-label>
+     <div class="inputs_for_price_and_quantity">
+
+      <ion-input label="price" labelPlacement="floating" placeholder="enter price" inputmode="numeric" (keyup)="sellingPriceUpdate(box_price,result)" #box_price  type="number"></ion-input>
+      <ion-input label="quantity" labelPlacement="floating"  placeholder="enter quantity" inputmode="numeric" (keyup)="sellingQuantityUpdate(box_quantity,result)"   #box_quantity  type="number"></ion-input>
+     
+      <!-- <ion-input (keyup)="sellingQuantityUpdate(box_quantity,j)" id="quantity" type="number" #box_quantity name="title" ngModel
+      required style="background-color: rgb(37, 37, 37);" value="jnnj" inputmode="numeric"></ion-input><br>
+  
+       
+      <ion-input (keyup)="sellingPriceUpdate(box_price,j)"  type="number" #box_price  ngModel
+      required name="price" style="background-color: rgb(37, 37, 37);" value={{shared.users[result].sellingPrice}} inputmode="numeric"></ion-input> -->
+    </div>
+      <ion-button class="delete_button" (click)="delete(result)">delete</ion-button>
+      <br>
+    </ion-item>
+    <ion-button id="sellButton"  (click)="onSubmit()" >sell</ion-button>
+    </form>
+  </div>
 </ion-content>
+
+
+
+
+
+

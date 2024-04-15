@@ -1,0 +1,16 @@
+ion-content{
+    width: 300px;
+    height: 500px;
+    // #background-content{
+
+    //     background:white;
+    // }
+}
+ion-content::part(background) {
+--background:  none;
+}
+
+.popover{
+    width: 60%;
+    height: 50%;
+}

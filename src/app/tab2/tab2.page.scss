@@ -1,0 +1,109 @@
+#cards{
+    display: none;
+}
+
+#oldstock{
+    display: none;
+}
+ion-content{
+--background:#e9ecef;
+}
+.create_button{
+    width: -webkit-fill-available;
+    --background: #81b29a;
+}
+.ion_card_for_order_edit{
+    display: flex;
+    justify-content: space-around;
+}
+.newstockkiClass
+{
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 20px;
+
+    ion-item{
+        border-radius: 30px;
+        margin: 5px 10px;
+    }
+    ion-button{
+        --border-radius: 10px;
+        margin: 5px 10px;
+    }
+
+
+}
+.oldstockkiClass{
+    
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 20px;
+
+    ion-item{
+        border-radius: 30px;
+        margin: 5px 10px;
+    }
+    ion-button{
+        --border-radius: 10px;
+        margin: 5px 10px;
+    }
+
+
+}
+
+
+.button-block {
+    display: flex;
+    justify-content: center;
+}
+.block-button-1 {
+    text-align: center;
+    border-radius: 35px;
+    color: white;
+    font-size: 21px;
+    border: none;
+    height: 75px;
+    width: 330px;
+    background-color: #4b9cdb;
+    border-color: #bbdcff;
+    box-shadow: 0px 0 15px #bbdcff;
+}
+
+.complete_button{
+    width: 100%;
+    --background: #81b29a;
+}
+.edit_icon{
+    color: cadetblue    ;
+}
+
+.delete_icon{
+    color:#e5383b ;
+}
+
+.button-image {
+    top:10px;
+    position: relative;
+    height: 30px;
+    width: 30px;
+    // margin: 24px 0 0 -130px;
+    animation: updown 0.3s ease-in-out infinite;
+}
+
+@keyframes updown {
+  0% {
+    transform: rotate(-10deg);
+  }
+
+  50% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(-10deg);
+  }
+}

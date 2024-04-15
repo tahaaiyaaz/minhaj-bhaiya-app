@@ -1,0 +1,61 @@
+<ion-content>
+  <div class="calender">
+    <ion-datetime id="dateTimeKiId" color="dark" presentation="date" show-default-title="true" (ionChange)="change($event)">
+
+
+
+    </ion-datetime>
+  
+  </div>
+
+  <!-- <div>
+
+ 
+    <h1>sold Items :</h1>
+    <ion-card *ngFor="let si of solditems">
+      {{si.name}}
+      {{si.sellingPrice}}
+    </ion-card>
+  </div>
+  <div >
+    <ion-item >
+
+      <h1>new stock</h1>
+    
+      <ion-card *ngFor="let si of newStock">
+        {{si.name}}
+        {{si.Price}}
+      </ion-card>
+    </ion-item>
+  </div> -->
+
+
+
+
+
+
+
+<!-- <div>
+
+  <ion-grid>
+   
+  </ion-grid>
+</div> -->
+<h1>sold Items :</h1>
+    <ion-card *ngFor="let si of solditems">
+      {{si.name}}
+      {{si.sellingPrice}}
+    </ion-card>
+<ion-item >
+
+  <h1>new stock</h1>
+
+  <ion-card *ngFor="let si of newStock">
+    {{si.name}}
+    {{si.Price}}
+  </ion-card>
+</ion-item>
+  
+
+
+</ion-content>
