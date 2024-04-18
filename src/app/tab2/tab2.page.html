@@ -100,7 +100,7 @@
   </ion-segment> -->
 
   <div id="newstock">
-<form (ngSubmit)="initialize(box_name.value,box_price.value,box_quantity.value)">
+<form (ngSubmit)="create(box_name.value,box_price.value,box_quantity.value,imageurlid)">
 
 
   <div class="newstockkiClass">
@@ -116,6 +116,14 @@
       <!-- <ion-label position="floating" >quantity</ion-label> -->
       <ion-input required="true" label="quantity" labelPlacement="floating" placeholder="enter quantity" #box_quantity inputmode="numeric" type="number"></ion-input>
     </ion-item>
+    
+<input required type="file" name="file" id="file" class="inputfile" #imageurlid (change)="upload($event)">
+<br>
+
+<!-- <input type="file" name="file" id="file" class="inputfile" /> -->
+<label class="labelForUpload" for="file">{{imageName}}<ion-icon class="icon_for_upload" name="cloud-upload-outline"></ion-icon></label>
+<br>  
+<!-- <button (click)="UploadImage()">upload image</button> -->
 
 
 

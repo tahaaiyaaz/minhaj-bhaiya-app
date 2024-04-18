@@ -87,6 +87,11 @@ export class PopoverPage implements OnInit {
 
     
     this.passedId=JSON.parse(JSON.stringify(this.orders_to_change));
+    var cunt =0;
+    this.passedId.i.forEach((res)=>{
+      cunt +=parseInt(res.quantity);  
+    })
+    this.passedId.quantity=cunt;
     this.shared.update(this.passedId.idoffirebase,this.passedId)
     
   }

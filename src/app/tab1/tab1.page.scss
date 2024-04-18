@@ -1,9 +1,197 @@
 
 ion-content{
-    --background:#e9ecef;
+    --background:#ffffff;
 
 }
 ion-popover{
     --width:300px
     height: 500px;
 }
+
+.div_of_items{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px
+}
+
+
+
+
+
+
+
+
+// @import url();
+@import url("https://fonts.googleapis.com/css2?family=Reggae+One&family=Source+Sans+Pro&family=Oleo+Script&family=Dela+Gothic+One&family=Atma&display=swap");
+
+
+// @import 
+// 	url("https {&://fonts {&.googleapis {&.com/css2?family=Reggae {& + One& f amily=Source {& + Sans {& + Pro& f amily=Oleo {& + Script& f amily=Dela {& + Gothic {& + One& f amily=Atma& d isplay=swap"); 
+
+// .item {
+// 	background-color: rgba(255, 255, 255, 0.5);
+// 	width: calc(100% - calc(4.8rem * 2));
+// 	max-width: 480px;
+// 	padding: 2.8rem;
+// 	margin-bottom: 2.2rem;
+// 	display: flex;
+// 	flex-direction: column;
+// 	border-radius: 1.7rem;
+// 	box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.2);
+// 	transform: translateY(-1rem);
+// 	backdrop-filter: blur(1.5rem);
+// 	&:last-child {
+// 		margin-bottom: 0.5rem;
+// 	}
+	
+// 	figure {
+// 		width: 100%;
+// 		margin-bottom: 1.5rem;
+// 		display: flex;
+// 		justify-content: center;
+// 		align-items: center;
+// 		overflow: hidden;
+// 		border-radius: 1.5rem;
+// 		img {
+			
+// 			display: block;
+// 		}
+// 	}
+// 	button {
+// 		width: 100%;
+// 		color: #d99904;
+// 		font-size: 1.5rem;
+// 		font-weight: bold;
+// 		text-shadow: 0 -1px #ffc233;
+// 		background-image: linear-gradient(#ffe46e 0%, #ffd936 30% 80%, #ffcd19 100%);
+// 		padding: 1.4rem;
+// 		border: solid 1px #c98d00;
+// 		outline: none;
+// 		border-radius: 2.5rem / 50%;
+// 		transition: filter 500ms ease-out;
+// 		&:hover {
+// 			filter: brightness(90%);
+// 		}
+// 		&:active {
+// 			filter: brightness(80%);
+// 		}
+// 	}
+// }
+// .description {
+// 	color: rgba(255, 255, 255, 0.7);
+// 	background-color: rgba(0, 0, 0, 0.5);
+// 	width: calc(100% - calc(2.8rem * 2));
+// 	height: 320px;
+// 	line-height: 1.75rem;
+// 	padding: 2.5rem;
+// 	position: absolute;
+// 	top: calc(2.8rem + 3.3rem);
+// 	left: 2.8rem;
+// 	overflow: auto;
+// 	opacity: 0;
+// 	border-radius: 1.5rem;
+// 	transition: opacity 200ms ease-out;
+// }
+// .item figure:hover + .description,
+// .description:hover {
+// 	opacity: 1;
+// }
+// .price {
+// 	font-size: 1.4rem;
+// 	font-weight: bold;
+// 	margin-bottom: 1.5rem;
+// }
+// .special {
+// 	margin-bottom: 0.5rem;
+// }
+// select {
+// 	padding: 0.8rem 1.2rem;
+// 	border: solid 1px #efefef;
+// 	margin-bottom: 1.2rem;
+// 	outline: none;
+// 	border-radius: 0.75rem;
+// 	transition: box-shadow 200ms ease-out;
+// }
+// select:focus,
+// select:active {
+// 	box-shadow: 0 0 0 0.25rem rgba(43, 153, 255, 0.5);
+// }
+// label {
+// 	margin-bottom: 0.7rem;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+    text-align: center;
+    padding: 30px;
+    background: #f8f4f2;
+    font-family: Arial;
+  }
+  
+  .a-box {
+    display: inline-block;
+    width: 240px;
+    text-align: center;
+  }
+  
+  .img-container {
+      height: 230px;
+      width: 200px;
+      overflow: hidden;
+      border-radius: 0px 0px 20px 20px;
+      display: inline-block;
+  }
+  
+  .img-container img {
+      transform: skew(0deg, -13deg);
+      height: 250px;
+      margin: -20px 0px -7px;
+      width: -webkit-fill-available;
+
+  }
+  
+  .inner-skew {
+      display: inline-block;
+      border-radius: 20px;
+      overflow: hidden;
+      padding: 0px;
+      transform: skew(0deg, 13deg);
+      font-size: 0px;
+      margin: 30px 0px 0px 0px;
+      background: #c8c2c2;
+      height: 250px;
+      width: 200px;
+  }
+  
+  .text-container {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    padding: 120px 20px 20px 20px;
+    border-radius: 20px;
+    background: #fff;
+    margin: -120px 0px 0px 0px;
+    line-height: 19px;
+    font-size: 14px;
+  }
+  
+  .text-container h3 {
+    margin: 20px 0px 10px 0px;
+    color: #04bcff;
+    font-size: 18px;
+  }

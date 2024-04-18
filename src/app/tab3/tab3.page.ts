@@ -72,7 +72,7 @@ export class Tab3Page implements OnInit {
 
     console.log(result)
     let o = 0;
-    this.sellingStock.forEach((res) => {
+    this.items.forEach((res) => {
       if (res.idoffirebase == result.idoffirebase) {
         res.sellingQuantity = ev.value
         o++;
@@ -81,19 +81,14 @@ export class Tab3Page implements OnInit {
     if (o == 0) {
 
 
-      this.sellingStock.push({
-        "idoffirebase": result.idoffirebase,
-        "sellingPrice": 0,
-        "sellingQuantity": ev.value,
-        "name": result.name
-      })
+    console.log("item not awailable")
     }
-    console.log(this.sellingStock)
+    console.log("selling quantity update",this.items)
     // this.update(result.idoffirebase,{})
 
   }
 
-  sellingPriceUpdate(ev, result) {
+  sellingPriceUpdate(price, result) {
     //     for(var i=0;i<ev.value.length;i++)
     // {
     //   console.log(ev.value[i])
@@ -117,25 +112,39 @@ export class Tab3Page implements OnInit {
     // console.log(ev.value)
     // this.shared.users[index].sellingPrice = ev.value;
     // console.log(index)
+    // let o = 0;
+    // this.sellingStock.forEach((res) => {
+    //   if (res.idoffirebase == result.idoffirebase) {
+    //     res.sellingPrice = price.value
+    //     o++;
+    //   }
+    // })
+    // if (o == 0) {
+
+
+    //   this.sellingStock.push({
+    //     "idoffirebase": result.idoffirebase,
+    //     "sellingPrice": price.value,
+    //     "sellingQuantity": 0,
+    //     "name": result.name
+    //   })
+    // }
+    // console.log("selling price update",this.sellingStock)
+
+    console.log(result)
     let o = 0;
-    this.sellingStock.forEach((res) => {
+    this.items.forEach((res) => {
       if (res.idoffirebase == result.idoffirebase) {
-        res.sellingPrice = ev.value
+        res.sellingPrice = price.value
         o++;
       }
     })
     if (o == 0) {
 
 
-      this.sellingStock.push({
-        "idoffirebase": result.idoffirebase,
-        "sellingPrice": ev.value,
-        "sellingQuantity": 0,
-        "name": result.name
-      })
+    console.log("item not awailable")
     }
-    console.log(this.sellingStock)
-
+    console.log("selling quantity update",this.items)
   }
 
 
@@ -302,12 +311,32 @@ export class Tab3Page implements OnInit {
 
 
   //   }
+checkForZero(){
+  return new Promise((resolve, reject) => {
+    this.items.forEach((ev)=>{
+      if (ev.sellingQuantity == '' || ev.sellingQuantity == '0') {
+
+        this.presentAlert("selling quantity is 0 of", ev.name);
+        throw new Error("Break the loop.")
+      }
+      if (ev.sellingPrice == '' || ev.sellingPrice == '0') {
+
+        this.presentAlert("selling price is 0 of", ev.name);
+        throw new Error("Break the loop.")
+      }
+    })
+    resolve("s")
+      
+     
+        reject("not uploaded")
+      
+   });
+}
 
 
-
-  onSubmit() {
+async  sellItems() {
     // this.shared.addsoledItemOnDate("a","10","2")
-
+   var countForIndex=0;
     let cart: any = []
 
     console.log("sellingstock", this.sellingStock, "items", this.items)
@@ -423,17 +452,42 @@ export class Tab3Page implements OnInit {
 
 
     for (var p = 0; p < this.items.length; p++) {
-      var element = this.sellingStock[p];
-      if (element.sellingQuantity == '' || element.sellingQuantity == '0') {
+      var element = this.items[p];
 
-        this.presentAlert("selling quantity is 0 of", element.name);
-        throw new Error("Break the loop.")
+      if(countForIndex==0){
+        this.items.forEach((ev)=>{
+          if (ev.sellingQuantity == '' || ev.sellingQuantity == '0') {
+  
+            this.presentAlert("selling quantity is 0 of", ev.name);
+            throw new Error("Break the loop.")
+          }
+          if (ev.sellingPrice == '' || ev.sellingPrice == '0') {
+  
+            this.presentAlert("selling price is 0 of", ev.name);
+            throw new Error("Break the loop.")
+          }
+          console.log(ev,"ev on "+467)
+          if(parseInt(ev.sellingQuantity)>parseInt(ev.quantity))
+            {
+  
+              this.presentAlert("selling quantiity is more than available of", ev.name);
+          throw new Error("Break the loop.")
+  
+            }
+        })
+        countForIndex++
       }
-      if (element.sellingPrice == '' || element.sellingPrice == '0') {
+     
+      // if (element.sellingQuantity == '' || element.sellingQuantity == '0') {
 
-        this.presentAlert("selling price is 0 of", element.name);
-        throw new Error("Break the loop.")
-      }
+      //   this.presentAlert("selling quantity is 0 of", element.name);
+      //   throw new Error("Break the loop.")
+      // }
+      // if (element.sellingPrice == '' || element.sellingPrice == '0') {
+
+      //   this.presentAlert("selling price is 0 of", element.name);
+      //   throw new Error("Break the loop.")
+      // }
       for (var i = 0; i < element.sellingQuantity.length; i++) {
         console.log(element.sellingQuantity[i])
         if (element.sellingQuantity[i] == 'e') {
@@ -606,7 +660,7 @@ export class Tab3Page implements OnInit {
     console.log(x)
   }
   addIndexOfOrders(j) {
-    this.showAlert()
+
 
     this.items.push(j);
     console.log("items", this.items)
@@ -615,7 +669,7 @@ export class Tab3Page implements OnInit {
 
     this.items = lodash.uniqWith(this.items, lodash.isEqual);
     console.log("after lodash", this.items)
-    let itemsLength = this.items.length;
+    // let itemsLength = this.items.length;
 
 
     // this.items.forEach(element => {

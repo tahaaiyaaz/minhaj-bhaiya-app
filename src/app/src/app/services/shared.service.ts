@@ -66,7 +66,7 @@ export class SharedService implements OnInit {
         {
           price: "120", quantity: '12',
         },
-      ], quantity: '12', sellingPrice: "0", sellingQuantity: "0"
+      ], quantity: '12', sellingPrice: "0", sellingQuantity: "0",imageurl: ""
     },
     {
       name: '2nd marble name', idoffirebase: 2, i: [
@@ -74,7 +74,7 @@ export class SharedService implements OnInit {
           price: "12", quantity: '12',
         },
       ],
-      quantity: '12', sellingPrice: "0", sellingQuantity: "0"
+      quantity: '12', sellingPrice: "0", sellingQuantity: "0",imageurl:""
     }
   ];
 
@@ -128,15 +128,16 @@ export class SharedService implements OnInit {
   }
 
 
-  addUser(name: string, price: string, quantity: string) {
-    this.users.push({ name, quantity, idoffirebase: 9, sellingPrice: price, sellingQuantity: quantity, i: [{ price: price, quantity: quantity }] });
+  addUser(name: string, price: string, quantity: string,imgurl) {
+    // this.users.push({ name, quantity, idoffirebase: 9, sellingPrice: price, sellingQuantity: quantity, i: [{ price: price, quantity: quantity }] ,imageurl:"mdm"});
     this.addNote({
       name: name,
       quantity: quantity,
       idoffirebase: 9,
-      sellingPrice: price,
-      sellingQuantity: quantity,
-      i: [{ price: price, quantity: quantity }]
+      sellingPrice: "0",
+      sellingQuantity: "0",
+      i: [{ price: price, quantity: quantity }],
+      imageurl:imgurl
     }).then(() => {
       this.getItems()
 
@@ -156,6 +157,10 @@ export class SharedService implements OnInit {
 
     this.users[index].quantity = quantity;
   }
+
+
+
+
   changeIinusers(name, price, quantity) {
     console.log(this.users)
 
@@ -279,7 +284,7 @@ export class SharedService implements OnInit {
   addNewItemOnDate(name: string, price: string, quantity: string) {
     let idForNewItemOnDate;
     console.log("inside ss")
-    this.newStockOnDate.push({ name: name, Price: price, Quantity: quantity, date: this.thisdate, month: this.thismonth, year: this.thisyear })
+    // this.newStockOnDate.push({ name: name, Price: price, Quantity: quantity, date: this.thisdate, month: this.thismonth, year: this.thisyear })
 
     // this.users.push({ name, quantity, idoffirebase: 9, sellingPrice: price, sellingQuantity: quantity, i: [{ price: price, quantity: quantity }] });
     this.addNoteForNewItemOnDate({
@@ -289,7 +294,8 @@ export class SharedService implements OnInit {
       idoffirebase: this.idOfFireBaseForNewStockOnDate,
       date: this.thisdate,
       month: this.thismonth,
-      year: this.thisyear
+      year: this.thisyear,
+      imageurl:""
     }).then(() => {
       let toupdateid;
       this.getNewItemsOnDate().subscribe((res) => {

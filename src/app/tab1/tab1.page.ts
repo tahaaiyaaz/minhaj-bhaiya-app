@@ -14,6 +14,7 @@ import { ModalController, PopoverController } from '@ionic/angular';
 import { PopoverPage } from '../components/popover/popover.page';
 import { Tab4Page } from '../tab4/tab4.page';
 import { Firestore, collection, doc, updateDoc } from '@angular/fire/firestore';
+import { getStorage, ref, uploadBytes, getMetadata, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 
 @Component({
@@ -22,6 +23,73 @@ import { Firestore, collection, doc, updateDoc } from '@angular/fire/firestore';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements AfterViewInit {
+  imageurl;
+  path;
+  upload(event) {
+    this.path = event.target.files[0]
+    // console.log(event.target.files[0])
+  }
+  UploadImage() {
+    // // this.path.name="marble name"
+    console.log(this.path)
+    const storage = getStorage();
+    // const storageRef = ref(storage, 'images/');
+
+    // 'file' comes from the Blob or File API
+    // uploadBytes(storageRef, this.path).then((snapshot) => {
+    //   console.log('Uploaded a blob or file!', snapshot);
+    // });
+
+
+
+
+    var nameofimage="great"
+    const forestRef = ref(storage, 'images/'+nameofimage);
+
+    // getMetadata(forestRef)
+    //   .then((metadata) => {
+    //     console.log(metadata)
+    //     // Metadata now contains the metadata for 'images/forest.jpg'
+    //   })
+    //   .catch((error) => {
+    //     // Uh-oh, an error occurred!
+    //   });
+
+      
+const uploadTask = uploadBytesResumable(forestRef, this.path);
+
+uploadTask.on('state_changed', 
+  (snapshot) => {
+    // Observe state change events such as progress, pause, and resume
+    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    console.log('Upload is ' + progress + '% done');
+    if(progress==100){
+      console.log("perfect")
+    }
+   
+  }, 
+  (error) => {
+    console.log(error)
+    // Handle unsuccessful uploads
+  }, 
+  () => {
+    // Handle successful uploads on complete
+    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+      console.log('File available at', downloadURL +' ' + "https://www.youtube.com/watch?v=iEcokZOv5UY");
+      this.imageurl=downloadURL
+
+    });
+  }
+
+)
+
+
+
+  }
+
+
   arr: any;
 
   soled_items: any;
@@ -29,6 +97,7 @@ export class Tab1Page implements AfterViewInit {
   noice(n: any) {
     console.log(n)
   }
+
   constructor(public tab4: Tab4Page, private http: HttpClient, private router: Router, private ss: SharedService, private renderer: Renderer2, private popctrl: PopoverController, private modalctrl: ModalController, public firebase: Firestore) {
     // this.update("G05ZVvras235z7VrvliS",this.users[0])
 
@@ -40,17 +109,17 @@ export class Tab1Page implements AfterViewInit {
 
   }
 
-  async update(id, data) {
-    try {
-      const notesRef = collection(this.firebase, 'minhajbhaiyaapp2/YdSarGI7wYeL6JQJ12xN/items_in_stock');
-      const docRef = doc(notesRef, id); // Replace with your desired document ID
-      await updateDoc(docRef, data);
-      console.log("New fields added successfully");
-    }
-    catch (error) {
-      console.log("there was an error but i dont know where")
-    }
-  }
+  // async update(id, data) {
+  //   try {
+  //     const notesRef = collection(this.firebase, 'minhajbhaiyaapp2/YdSarGI7wYeL6JQJ12xN/items_in_stock');
+  //     const docRef = doc(notesRef, id); // Replace with your desired document ID
+  //     await updateDoc(docRef, data);
+  //     console.log("New fields added successfully");
+  //   }
+  //   catch (error) {
+  //     console.log("there was an error but i dont know where")
+  //   }
+  // }
 
   users = [
     {
@@ -58,7 +127,8 @@ export class Tab1Page implements AfterViewInit {
         {
           price: "120", quantity: '12',
         },
-      ], quantity: '12', sellingPrice: "0", sellingQuantity: "0"
+      ], quantity: '12', sellingPrice: "0", sellingQuantity: "0",imageurl:""
+
     },
   ]
   ngAfterViewInit() {
@@ -69,9 +139,8 @@ export class Tab1Page implements AfterViewInit {
     this.soled_items = this.ss.soledItems;
   }
 
-  async openDetails(a, b) 
-  {
-    console.log("index and arr",a, a.idoffirebase)
+  async openDetails(a, b) {
+    console.log("index and arr", a, a.idoffirebase)
 
 
     // const popover = await this.popctrl.create({
@@ -83,7 +152,7 @@ export class Tab1Page implements AfterViewInit {
     //   backdropDismiss: false
 
     // })
-    
+
     const popover = await this.popctrl.create({
       component: PopoverPage,
       componentProps: {

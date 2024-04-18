@@ -40,10 +40,21 @@ export class Tab4Page implements OnInit {
   monthToFetch;
   dateToFetch;
   firebaseDate;
+  newItemsOnDate;
+  soledItemsOnDate;
 
   constructor(public datepipe?: DatePipe, public firebase?: Firestore, public ss?: SharedService) {
 
+    ss.getNewItemsOnDate().subscribe((res)=>{
+      console.log("new items on date",res)
+      this.newItemsOnDate=res
+    })
 
+
+    ss.getsoledItemsOnDate().subscribe((res)=>{
+      console.log("soled items on date",res)
+      this.soledItemsOnDate=res
+    })
     // this.update("YZZJQ2BEvuGZwYOPHdaD").then((res)=>{
     //   console.log("updated",res)
     // })

@@ -5,6 +5,32 @@
 #oldstock{
     display: none;
 }
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.labelForUpload {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: red;
+    display: flex;
+    padding:10px;
+    border-radius: 10px;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+.icon_for_upload{
+    font-size: 40px;
+}
+.labelForUpload:hover {
+    background-color: green;
+}
 ion-content{
 --background:#e9ecef;
 }

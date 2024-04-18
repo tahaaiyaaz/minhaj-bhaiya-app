@@ -11,8 +11,11 @@ import { SoledPopoverPage } from '../components/soled-popover/soled-popover.page
 import { PopoverPageModule } from '../components/popover/popover.module';
 import { throwError } from 'rxjs';
 import { Tab4Page } from '../tab4/tab4.page';
+
 import { Firestore, collection, collectionData, doc, getDoc, getFirestore, updateDoc } from '@angular/fire/firestore';
 import { initializeApp } from '@angular/fire/app';
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from '@angular/fire/storage';
+import { LocationService } from '../services/location/location.service';
 // import { Tab1Page } from '../tab1/tab1.page';
 
 
@@ -37,6 +40,207 @@ export class Tab2Page implements OnInit {
   arr = this.shared.users;
   message: any;
   firebaseDate;
+  imageurl;
+  path;
+imageName;
+
+  
+  upload(event) {
+    this.path = event.target.files[0]
+    this.imageName=this.path.name
+    // console.log(event.target.files[0])
+  }
+
+
+//   some_function = function (nameOfImage) {
+//     console.log(this.path)
+//     return new Promise(function (resolve, reject) {
+
+//       /* stuff using username, password */
+      
+// //     console.log(this.path)
+// //     const storage = getStorage();
+// //     // const storageRef = ref(storage, 'images/');
+
+// //     // 'file' comes from the Blob or File API
+// //     // uploadBytes(storageRef, this.path).then((snapshot) => {
+// //     //   console.log('Uploaded a blob or file!', snapshot);
+// //     // });
+
+
+
+
+// //     const forestRef = ref(storage, 'images/'+nameOfImage);
+
+// //     // getMetadata(forestRef)
+// //     //   .then((metadata) => {
+// //     //     console.log(metadata)
+// //     //     // Metadata now contains the metadata for 'images/forest.jpg'
+// //     //   })
+// //     //   .catch((error) => {
+// //     //     // Uh-oh, an error occurred!
+// //     //   });
+
+      
+// // const uploadTask = uploadBytesResumable(forestRef, this.path);
+
+// // uploadTask.on('state_changed', 
+// //   (snapshot) => {
+// //     // Observe state change events such as progress, pause, and resume
+// //     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+// //     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+// //     console.log('Upload is ' + progress + '% done');
+// //     if(progress==100){
+// //       console.log("perfect")
+// //     }
+   
+// //   }, 
+// //   (error) => {
+// //     console.log(error)
+// //     // Handle unsuccessful uploads
+// //   }, 
+// //   async() => {
+// //     // Handle successful uploads on complete
+// //     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+// //   await  getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+// //       console.log('File available at', downloadURL +' ' + "https://www.youtube.com/watch?v=iEcokZOv5UY");
+// //       this.imageurl=downloadURL
+
+// //     });
+// //   }
+
+// // )
+
+
+
+
+
+
+
+//     });
+//   };
+
+some_function (name) {
+
+
+ return new Promise((resolve, reject) => {
+    this.UploadImage(name)
+    if(this.imageurl)
+      {
+        resolve(this.imageurl)
+      }
+      else{
+        reject("not uploaded")
+      }
+   });
+
+  
+  console.log(this.imageurl)
+//   this.shared.addUser(name, price, quantity);
+  
+// this.getItems().subscribe((res) => {
+//   this.firebaseDate = res;
+
+//   // console.log("firebase",this.firebaseDate)
+
+//   for (let i = 0; i < this.firebaseDate.length; i++) {
+//     this.data(this.firebaseDate[i].idoffirebase)
+//     this.shared.users[i] = this.firebaseDate[i];
+//   }
+// })
+// setTimeout(() => {
+//   this.shared.users.forEach((res) => {
+//     this.update(res.idoffirebase, res)
+
+
+//   });
+// }, (400))
+
+
+// this.shared.addNewStockOnDate(name, price, quantity)
+
+
+
+}
+  
+
+
+  UploadImage(nameOfImage) {
+  
+    // // this.path.name="marble name"
+    console.log(this.path)
+    const storage = getStorage();
+    // const storageRef = ref(storage, 'images/');
+
+    // 'file' comes from the Blob or File API
+    // uploadBytes(storageRef, this.path).then((snapshot) => {
+    //   console.log('Uploaded a blob or file!', snapshot);
+    // });
+
+
+
+
+    const forestRef = ref(storage, 'images/'+nameOfImage);
+
+    // getMetadata(forestRef)
+    //   .then((metadata) => {
+    //     console.log(metadata)
+    //     // Metadata now contains the metadata for 'images/forest.jpg'
+    //   })
+    //   .catch((error) => {
+    //     // Uh-oh, an error occurred!
+    //   });
+
+      
+const uploadTask = uploadBytesResumable(forestRef, this.path)
+return new Promise((resolve,reject)=>{
+
+  uploadTask.then(()=>{
+    console.log("hogaya re bhai")
+    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+    console.log(downloadURL)
+    this.imageurl=downloadURL
+    resolve(this.imageurl+"finally khatam")
+    if(this.imageurl=='')
+      {
+        reject("kya dam hai aaro")
+      }
+    });
+    
+  
+  })
+})
+// uploadTask.on('state_changed', 
+//   (snapshot) => {
+//     // Observe state change events such as progress, pause, and resume
+//     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+//     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+//     console.log('Upload is ' + progress + '% done');
+//     if(progress==100){
+//       console.log("perfect")
+//     }
+   
+//   }, 
+//   (error) => {
+//     console.log(error)
+//     // Handle unsuccessful uploads
+//   }, 
+//   () => {
+//     // Handle successful uploads on complete
+//     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+//     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+//       console.log('File available at', downloadURL +' ' + "https://www.youtube.com/watch?v=iEcokZOv5UY");
+//       this.imageurl=downloadURL
+
+//     });
+//   }
+
+// )
+
+
+
+  }
+
   addToOldItems(price, quantity) {
     if(this.oldItemToChange==null){
       alert("please select ")
@@ -144,7 +348,7 @@ console.log("items to change",9,this.oldItemToChange)
   }
 
 
-  constructor(public firebase: Firestore, private popCtrl: PopoverController, public shared: SharedService, private router?: Router, private _location?: Location) {
+  constructor(public firebase: Firestore, public Locationservices:LocationService,private popCtrl: PopoverController, public shared: SharedService, private router?: Router, private _location?: Location) {
     // (this.shared.users.forEach((res) => {
     //   this.oldItems.push(res)
     // }))
@@ -185,9 +389,15 @@ console.log("items to change",9,this.oldItemToChange)
   }
 
 
-  ngOnInit(): void {
+ async ngOnInit() {
 
 
+
+
+  
+// code to get loction
+    // const position: any = await this.Locationservices.getCurrentLocation();
+    // console.log(position);
 
   }
   selectOlditem(ev) {
@@ -281,8 +491,17 @@ console.log("items to change",9,this.oldItemToChange)
   //   console.log(this.shared.users);
   //   // this.shared.setItems();
   // }
-  initialize(name: any, price: any, quantity: any) {
+ async create(name: any, price: any, quantity: any,imgurl) {
 
+    if(imgurl.value=='')
+      {
+        console.log("image khali hai "+93293)
+        
+        alert("are pakit pehle image nai hai")
+
+        throw new Error("kya hai re pakit")
+      }
+      
     this.shared.users.forEach((va) => {
       if (va.name == name) {
         alert("are pakit pehle se hai")
@@ -290,6 +509,7 @@ console.log("items to change",9,this.oldItemToChange)
         throw new Error("kya hai re pakit")
       }
     })
+
     for (var i = 0; i < price.length; i++) {
       console.log(price[i])
       if (price[i] == 'e') {
@@ -339,9 +559,13 @@ console.log("items to change",9,this.oldItemToChange)
     }
     // console.log(price.length)
 
+// let data = await this.some_function(name)
+// console.log(data)
+  await this.UploadImage(name) 
 
-    this.shared.addUser(name, price, quantity);
-
+      console.log(this.imageurl)
+      this.shared.addUser(name, price, quantity,this.imageurl);
+      
     this.getItems().subscribe((res) => {
       this.firebaseDate = res;
 
@@ -362,6 +586,8 @@ console.log("items to change",9,this.oldItemToChange)
 
     
     this.shared.addNewStockOnDate(name, price, quantity)
+
+    
 
   }
 

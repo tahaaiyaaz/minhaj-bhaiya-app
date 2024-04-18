@@ -1,12 +1,16 @@
 <ion-content>
-  <div class="calender">
+
+
+  <!-- div for calander -->
+  <!-- <div class="calender">
     <ion-datetime id="dateTimeKiId" color="dark" presentation="date" show-default-title="true" (ionChange)="change($event)">
 
 
 
     </ion-datetime>
   
-  </div>
+  </div> -->
+  
 
   <!-- <div>
 
@@ -41,7 +45,7 @@
    
   </ion-grid>
 </div> -->
-<h1>sold Items :</h1>
+<!-- <h1>sold Items :</h1>
     <ion-card *ngFor="let si of solditems">
       {{si.name}}
       {{si.sellingPrice}}
@@ -54,8 +58,64 @@
     {{si.name}}
     {{si.Price}}
   </ion-card>
-</ion-item>
+</ion-item> -->
   
+
+<!-- 
+<div class="solditems" *ngFor="let a of newItemsOnDate" >
+{{a.name}}
+{{a.price}}
+{{a.quantity}}
+
+</div>
+<h1>soled</h1>
+<div class="" *ngFor="let b of soledItemsOnDate" >
+  <div *ngFor="let c of b.list">
+    
+    {{c.quantity}}
+  </div>
+
+</div> -->
+
+
+
+<div class="soled_items_overall_div">
+
+  
+<h2>soled items</h2>
+<div  *ngFor="let b of soledItemsOnDate" >
+  <div class="item" *ngFor="let c of b.list">
+    <h3>{{c.name}}</h3>
+    <!-- <figure>
+      <img [src]="c.imageurl" [alt]="c.name">
+      full size image at: https://images.unsplash.com/photo-1560072810-1cffb09faf0f  
+    </figure> -->
+    <p class="price">Price :     {{c.price}}</p>
+    <p class="special">quantity : {{c.quantity}}</p>
+    <h4>date:{{b.date}} <br>month : {{b.month}} <br>year : {{b.year}}</h4>
+
+   
+  </div>
+</div>
+
+
+
+</div>
+
+<h2>new items</h2>
+  <div class="item" *ngFor="let a of newItemsOnDate" >
+    <h3>{{a.name}}</h3>
+    <!-- <figure>
+      <img [src]="a.imageurl" [alt]="a.name">
+      full size image at: https://images.unsplash.com/photo-1560072810-1cffb09faf0f  
+    </figure> -->
+
+    <p class="price">Price :     {{a.price}}</p>
+    <p class="special">quantity : {{a.quantity}}</p>
+    <h4>date : {{a.date}} <br> month : {{a.month}} <br>year : {{a.year}}</h4>
+   
+  </div>
+
 
 
 </ion-content>
